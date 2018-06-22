@@ -1,0 +1,17 @@
+language: python
+
+python:
+  - "3.6"
+
+before_install:
+  - sudo apt-get update -yqq
+
+install:
+  - pip install -r requirements.txt
+  - ./tests/runner.py
+
+before_script:
+  - pylint --errors-only ./tests
+
+script:
+  - pre-commit run --all-files --verbose
